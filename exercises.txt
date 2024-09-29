@@ -1,0 +1,99 @@
+
+1.I have two DataFrames: one called df and another called parent_doc_mapping. Both DataFrames have a column named documentID, and I want to merge them based on this column. I want to keep all the rows from df, even if there are no matching rows in parent_doc_mapping. How can I perform this left join to combine the two DataFrames on documentID
+
+data:data_df = {
+    'documentID': [101, 102, 103, 104],
+    'title': ['Product A', 'Product B', 'Product C', 'Product D'],
+    'description': ['Description A', 'Description B', 'Description C', 'Description D']
+}
+
+# DataFrame parent_doc_mapping
+data_mapping = {
+    'documentID': [102, 104],
+    'parent_doc': ['Parent B', 'Parent D']
+}
+
+2.I have a DataFrame with separate title, description, and documentID columns. I want to create a new column called ti_desc_prod that combines the values from these three columns. If title or description is missing (NaN), it should be replaced with an empty string before combining. How can I concatenate these columns?
+
+data = {
+    'title': ['Product A', 'Product B', None, 'Product D'],
+    'description': ['Description A', None, 'Description C', 'Description D'],
+    'documentID': ['101', '102', '103', '104']
+}
+
+3.I have a DataFrame with a column called ti_desc_prod that contains concatenated values. I want to replace any entirely empty strings (i.e., strings that contain only whitespace) with 'N/A'. ?
+
+data = {
+    'ti_desc_prod': ['Product A Description A 101', ' ', '', 'Product D Description D 104']
+}
+
+
+4.I have a dataset where I need to update the persona column based on certain conditions in the slug_name column. The slug_name can contain job roles such as 'ce', 'fse', or 'service-engineer', but these may appear in different cases (lowercase, uppercase, or mixed). If the persona1 value is 'No_roles', I want to check if the slug_name contains 'ce', 'fse', or 'service-engineer'. If any of these roles are present, I want to set persona1 to 'Engineer'. If persona1 is 'No_roles' and none of these roles are present in slug_name, I want to set it to 'Operator'. For any other values of persona1, the value should remain unchanged. implement the logic to do the job?
+
+Data:
+data = {
+    'slug_name': [
+        'john-doe-ce-service',           # Contains 'ce'
+        'jane-smith-fse',                # Contains 'fse'
+        'jack-jones-service-engineer',    # Contains 'service-engineer'
+        'susan-doe-operator',            # No engineer role
+        'alex-king-CE',                  # 'CE' in uppercase
+        'mike-williams-FSE',             # 'FSE' in uppercase
+        'peter-parker-service',          # No engineer role
+        'diana-prince-ce-fse-service'    # Contains both 'ce' and 'fse'
+    ],
+    'persona1': [
+        'No_roles',    
+        'No_roles',    
+        'No_roles',    
+        'Operator',    
+        'No_roles',    
+        'No_roles',    
+        'Engineer',    
+        'No_roles'     
+    ]
+}
+
+5.I have a DataFrame with a column Domain that contains some empty values. I want to populate these empty values based on the ti_desc_prod column. Specifically, if ti_desc_prod contains the word 'Indigo' (case-insensitive), I want to set the Domain value to 'Indigo'. If ti_desc_prod contains the word 'PageWide' (case-insensitive), I want to set the Domain value to 'PWP'. If neither 'Indigo' nor 'PageWide' are found, the Domain value should remain as an empty string. I need this logic applied only to rows where the Domain is currently empty. How can I implement this?
+
+data = {
+    'ti_desc_prod': [
+        'HP Indigo 12000 Digital Press',
+        'HP PageWide Web Press T240 HD',
+        'HP Lasernet Printer',
+        'HP Indigo 7900',
+        'HP PageWide XL 8000 Printer',
+        'HP Designnet Printer'
+    ],
+    'Domain': [
+        '',  # Empty, should be 'Indigo'
+        '',  # Empty, should be 'PWP'
+        '',  # Empty, should remain empty
+        'Indigo',  # Already has a value, should remain unchanged
+        '',  # Empty, should be 'PWP'
+        'DesignJet'  # Already has a value, should remain unchanged
+    ]
+}
+
+3.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
